@@ -16,9 +16,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import Dashboard from './components/Dashboard';
+import Categories from './components/Categories';
+import Users from './components/Users';
+import Items from './components/Items';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import CategoryIcon from '@mui/icons-material/Category';
+import PeopleIcon from '@mui/icons-material/People';
+import InventoryIcon from '@mui/icons-material/Inventory';
 
 const drawerWidth = 240;
 
@@ -90,7 +95,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function SideNav() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [menuData,setMenuData] = React.useState("Dashboard");
+  const [menuData,setMenuData] = React.useState("Categories");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -130,8 +135,7 @@ export default function SideNav() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>setMenuData("Dashboard")}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -146,18 +150,81 @@ export default function SideNav() {
                     justifyContent: 'center',
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  <DashboardIcon />
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
-          ))}
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>setMenuData("Categories")}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <CategoryIcon />
+                </ListItemIcon>
+                <ListItemText primary="Categories" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>setMenuData("Items")}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <InventoryIcon />
+                </ListItemIcon>
+                <ListItemText primary="Items" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>setMenuData("Users")}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Users" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+        
         </List>
         <Divider />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         {/* <DrawerHeader /> */}
         {menuData === "Dashboard" && <Dashboard />}
+        {menuData === "Categories" && <Categories />}
+        {menuData === "Items" && <Items />}
+        {menuData === "Users" && <Users />}
       
        
       </Box>
