@@ -6,6 +6,8 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 
 const bull = (
@@ -26,6 +28,10 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Dashboard() {
+
+    const userState = useSelector(state => state.user);
+    console.log(userState.users);
+     console.log("HEllo")
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>

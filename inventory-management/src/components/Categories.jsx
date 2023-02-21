@@ -1,27 +1,15 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { useDispatch } from 'react-redux';
-import { getUsers } from '../api/userApi';
+
 import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 
 
-
-
-
-
-
 const Categories = () => {
     const [view, setView] = React.useState("Categories");
-
-
-    const dispatch = useDispatch();
-    React.useEffect(() => {
-        dispatch(getUsers);
-    }, []);
 
     return (
         <>
@@ -44,7 +32,7 @@ const Categories = () => {
                 {view === 'Add' && <>
 
                     <Grid container spacing={2}>
-                       
+
                         <Grid item xs={10}>
 
                             <FormControl fullWidth sx={{ m: 1 }}>

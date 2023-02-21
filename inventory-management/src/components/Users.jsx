@@ -8,6 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getUsers } from '../api/userApi';
 
 
 
@@ -24,9 +26,11 @@ const rows = [
 ];
 
 export default function Users() {
-  const userState = useSelector(state => state.user);
-  console.log(userState.users);
-  console.log("HEllo")
+ 
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+      dispatch(getUsers);
+  }, []);
   return (
     <>
     <Box height={400}>
