@@ -30,6 +30,8 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Dashboard() {
 
     const userState = useSelector(state => state.user);
+    const itemState = useSelector(state => state.item);
+    const userCategory = useSelector(state => state.category);
     console.log(userState.users);
      console.log("HEllo")
     return (
@@ -40,7 +42,7 @@ export default function Dashboard() {
                     <Card sx={{ minWidth: 275 }}>
                         <CardContent>
                             <Typography variant="h1" component="div">
-                                8
+                                {userState.users.length}
                             </Typography>
                             <Typography sx={{ mb: 1.5 }} color="text.secondary">
                                 Categories
@@ -57,7 +59,7 @@ export default function Dashboard() {
                     <Card sx={{ minWidth: 275 }}>
                         <CardContent>
                             <Typography variant="h1" component="div">
-                                8
+                            {itemState.items.length}
                             </Typography>
                             <Typography sx={{ mb: 1.5 }} color="text.secondary">
                                 Items
@@ -74,7 +76,7 @@ export default function Dashboard() {
                     <Card sx={{ minWidth: 275 }}>
                         <CardContent>
                             <Typography variant="h1" component="div">
-                                8
+                            {userCategory.categories.length}
                             </Typography>
                             <Typography sx={{ mb: 1.5 }} color="text.secondary">
                                 Users

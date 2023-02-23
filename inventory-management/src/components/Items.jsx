@@ -62,10 +62,10 @@ const Items = () => {
     const deleteItem = (id) =>{
         dispatch(removeItem(id));
     };
-    // const editItem = (uuid) => {
-    //     let data = state.items.filter(u=> u.uuid === uuid)
-    //     setItem({ ...item, name: da })
-    // };
+    const editItem = (uuid) => {
+        let data = state.items.filter(u=> u.uuid === uuid)
+        console.log(data);
+    };
     return (
 
         <div>
@@ -96,7 +96,7 @@ const Items = () => {
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
                                                 <TableCell component="th" scope="row">
-                                                    {row.categoryUuid}
+                                                    {row.uuid}
                                                 </TableCell>
                                                 <TableCell align="right">{row.name}</TableCell>
                                                 <TableCell align="right">{row.quantity}</TableCell>
