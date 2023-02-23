@@ -1,27 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getUsers } from "../api/userApi";
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
     loading: false,
     error: "",
     users: [],
-    length: 0,
-    
 }
 
 const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        addUser: (state, action) => {
-            state.users.push(action.payload)
-        },
-        removeUser: (state, action) => {
-            state.users = state.users.filter(u => u !== action.payload)
-        },
-        setCurrentUser: (state, action) => {
-            state.currentUser = action.payload
-        }
+        // addUser: (state, action) => {
+        //     state.users.push(action.payload)
+        // },
+        // removeUser: (state, action) => {
+        //     state.users = state.users.filter(u => u !== action.payload)
+        // },
+        // setCurrentUser: (state, action) => {
+        //     state.currentUser = action.payload
+        // }
     },
     extraReducers: (builder) => {
         builder.addCase(getUsers.pending, (state) => { state.loading = true });
