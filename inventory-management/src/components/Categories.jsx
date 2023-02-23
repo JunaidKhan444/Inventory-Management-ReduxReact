@@ -14,7 +14,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { addCategory } from '../state/categorySlice';
+import { addCategory, removeCategory } from '../state/categorySlice';
 
 const Categories = () => {
     const dispatch = useDispatch();
@@ -29,9 +29,7 @@ const Categories = () => {
 
     }, []);
 
-    // React.useEffect(() => {
-    //     dispatch(getUsers);
-    // }, []);
+    
 
     const save = () => {
         if (name.trim() == "") return;
@@ -40,6 +38,10 @@ const Categories = () => {
         setView("Categories");
         setName("");
     };
+    const deleteCategory = (id) => {
+
+        dispatch(removeCategory(id));
+    }
 
     return (
         <>
@@ -66,12 +68,12 @@ const Categories = () => {
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
                                                 <TableCell component="th" scope="row">
-                                                    {i}
+                                                    {row.uuid}
                                                 </TableCell>
                                                 <TableCell align="right">{row.name}</TableCell>
                                                 <TableCell align="right">
                                                 <Button variant="contained">Edit</Button> &ensp; 
-                                                <Button variant="contained">Delete</Button>
+                                                <Button variant="contained" onClick={()=>deleteCategory(row.uuid)}>Delete</Button>
                                                 </TableCell>
                                             </TableRow>
                                         ))}

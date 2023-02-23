@@ -59,6 +59,13 @@ const Items = () => {
         return category ? category.name : ""
 
     };
+    const deleteItem = (id) =>{
+        dispatch(removeItem(id));
+    };
+    // const editItem = (uuid) => {
+    //     let data = state.items.filter(u=> u.uuid === uuid)
+    //     setItem({ ...item, name: da })
+    // };
     return (
 
         <div>
@@ -85,7 +92,7 @@ const Items = () => {
                                     <TableBody>
                                         {state.items.map((row,id) => (
                                             <TableRow
-                                                key={row.categoryUuid}
+                                                key={id}
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
                                                 <TableCell component="th" scope="row">
@@ -97,8 +104,8 @@ const Items = () => {
                                                 <TableCell align="right">{findUser(row.userId)} 
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                <Button variant="contained">Edit</Button> &ensp; 
-                                                <Button variant="contained">Delete</Button>
+                                                <Button variant="contained" onclick={()=>editItem(row.uuid)}>Edit</Button> &ensp; 
+                                                <Button variant="contained" onClick={()=>deleteItem(row.uuid)}>Delete</Button>
                                                 </TableCell>
                                             </TableRow>
                                         ))}

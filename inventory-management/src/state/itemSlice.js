@@ -16,8 +16,11 @@ const itemSlice = createSlice({
             state.items.push(payload);
         },
         removeItem: (state, action) => {
-            state.items = state.items.filter(u => u !== action.payload)
+            state.items = state.items.filter(u => u.uuid !== action.payload)
         },
+        // updateItem: (state, action) => {
+        //     state.items = state.items.filter(u => u.uuid !== action.payload)
+        // },
     },
 });
 

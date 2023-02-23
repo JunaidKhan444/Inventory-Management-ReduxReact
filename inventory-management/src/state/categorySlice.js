@@ -17,7 +17,7 @@ const categorySlice = createSlice({
             state.categories.push(payload);
         },
         removeCategory: (state, action) => {
-            state.categories = state.categories.filter(u => u !== action.payload)
+            state.categories = state.categories.filter(u => u.uuid !== action.payload)
         },
     },
 });
