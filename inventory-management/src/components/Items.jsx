@@ -16,7 +16,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, removeItem } from '../state/itemSlice';
+import { addItem, removeItem, updateItem } from '../state/itemSlice';
 
 
 const Items = () => {
@@ -43,8 +43,7 @@ const Items = () => {
     console.log(item);
 
     const save = () => {
-
-        dispatch(addItem(item));
+        view=='Add'? dispatch(addItem(item)):dispatch(updateItem(item));
         setView("Items");
         setItem({})
     };
@@ -63,8 +62,9 @@ const Items = () => {
         dispatch(removeItem(id));
     };
     const editItem = (uuid) => {
-        let data = state.items.filter(u=> u.uuid === uuid)
-        console.log(data);
+        let data = state.items.find(u=> u.uuid === uuid)
+        setItem(data)
+        setView("Edit")
     };
     return (
 
@@ -104,7 +104,7 @@ const Items = () => {
                                                 <TableCell align="right">{findUser(row.userId)} 
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                <Button variant="contained" onclick={()=>editItem(row.uuid)}>Edit</Button> &ensp; 
+                                                <Button variant="contained" onClick={()=>editItem(row.uuid)}>Edit</Button> &ensp; 
                                                 <Button variant="contained" onClick={()=>deleteItem(row.uuid)}>Delete</Button>
                                                 </TableCell>
                                             </TableRow>
@@ -117,7 +117,7 @@ const Items = () => {
                     </>
                 }
 
-                {view == 'Add' &&
+                {(view == 'Add' || view == 'Edit') &&
                     <>
                         <Grid container spacing={2}>
                             <Grid item xs={5}>
