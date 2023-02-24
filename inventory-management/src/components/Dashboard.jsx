@@ -32,17 +32,14 @@ export default function Dashboard() {
     const userState = useSelector(state => state.user);
     const itemState = useSelector(state => state.item);
     const userCategory = useSelector(state => state.category);
-    console.log(userState.users);
-    console.log("HEllo")
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
                 <Grid item xs={4}>
-
                     <Card sx={{ minWidth: 275 }}>
                         <CardContent>
                             <Typography variant="h1" component="div">
-
                                 {userCategory.categories.length}
                             </Typography>
                             <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -70,7 +67,6 @@ export default function Dashboard() {
                             </Typography>
                         </CardContent>
                     </Card>
-
                 </Grid>
                 <Grid item xs={4}>
 
@@ -87,7 +83,6 @@ export default function Dashboard() {
                             </Typography>
                         </CardContent>
                     </Card>
-
                 </Grid>
             </Grid>
         </Box>

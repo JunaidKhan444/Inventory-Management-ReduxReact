@@ -19,17 +19,14 @@ import { addCategory, removeCategory } from '../state/categorySlice';
 const Categories = () => {
     const dispatch = useDispatch();
     const state = useSelector(state => state.category);
-
     const [view, setView] = React.useState("Categories");
     const [name, setName] = React.useState("");
-    
+
 
     React.useEffect(() => {
         dispatch(getUsers());
 
     }, []);
-
-    
 
     const save = () => {
         if (name.trim() == "") return;
@@ -52,13 +49,13 @@ const Categories = () => {
                             <Button variant="contained" onClick={() => setView('Add')}>Add</Button>
                         </Grid>
                         <Grid item sx={{ m: 1 }}>
-                        <TableContainer component={Paper}>
+                            <TableContainer component={Paper}>
                                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                                     <TableHead>
                                         <TableRow>
                                             <TableCell>Id</TableCell>
                                             <TableCell align="right">Name</TableCell>
-                                           <TableCell align="right">Actions</TableCell>
+                                            <TableCell align="right">Actions</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -72,8 +69,8 @@ const Categories = () => {
                                                 </TableCell>
                                                 <TableCell align="right">{row.name}</TableCell>
                                                 <TableCell align="right">
-                                                <Button variant="contained">Edit</Button> &ensp; 
-                                                <Button variant="contained" onClick={()=>deleteCategory(row.uuid)}>Delete</Button>
+                                                    <Button variant="contained">Edit</Button> &ensp;
+                                                    <Button variant="contained" onClick={() => deleteCategory(row.uuid)}>Delete</Button>
                                                 </TableCell>
                                             </TableRow>
                                         ))}
@@ -106,7 +103,6 @@ const Categories = () => {
                     </Grid>
                 </>
                 }
-
             </Box>
         </>
 
