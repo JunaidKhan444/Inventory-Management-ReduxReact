@@ -21,7 +21,6 @@ const itemSlice = createSlice({
         updateItem: (state, action) => {
             let index = state.items.findIndex(u => u.uuid == action.payload.uuid);
             state.items[index] = action.payload;
-
         },
     },
 });

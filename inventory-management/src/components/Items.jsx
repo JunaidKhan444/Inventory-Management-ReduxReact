@@ -47,14 +47,17 @@ const Items = () => {
         return user ? user.name : ""
 
     };
+    
     const findCategory = (id) => {
         let category = stateCategory.categories.find(u => u.uuid === id)
         return category ? category.name : ""
 
     };
+
     const deleteItem = (id) => {
         dispatch(removeItem(id));
     };
+
     const editItem = (uuid) => {
         let data = state.items.find(u => u.uuid === uuid)
         setItem(data)

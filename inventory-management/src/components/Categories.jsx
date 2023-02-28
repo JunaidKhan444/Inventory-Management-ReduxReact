@@ -14,7 +14,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { addCategory, removeCategory } from '../state/categorySlice';
+import { addCategory, removeCategory, updateItem } from '../state/categorySlice';
 
 const Categories = () => {
     const dispatch = useDispatch();
@@ -30,11 +30,19 @@ const Categories = () => {
 
     const save = () => {
         if (name.trim() == "") return;
-
-        dispatch(addCategory({ name }));
+        view == 'Add' ?  dispatch(addCategory({ name })) : dispatch(updateItem(name));
         setView("Categories");
         setName("");
     };
+
+    const editItem = (uuid) =>{
+        let data = state.categories.find(u => u.uuid === uuid)
+        console.log(data)
+        setName(data.name)
+        setView("Add")
+        
+    };
+
     const deleteCategory = (id) => {
 
         dispatch(removeCategory(id));
@@ -69,7 +77,7 @@ const Categories = () => {
                                                 </TableCell>
                                                 <TableCell align="right">{row.name}</TableCell>
                                                 <TableCell align="right">
-                                                    <Button variant="contained">Edit</Button> &ensp;
+                                                    <Button variant="contained"on onClick={() => editItem(row.uuid)}>Edit</Button> &ensp;
                                                     <Button variant="contained" onClick={() => deleteCategory(row.uuid)}>Delete</Button>
                                                 </TableCell>
                                             </TableRow>
