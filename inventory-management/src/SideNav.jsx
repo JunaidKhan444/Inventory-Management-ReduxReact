@@ -25,6 +25,8 @@ import CategoryIcon from '@mui/icons-material/Category';
 import PeopleIcon from '@mui/icons-material/People';
 import InventoryIcon from '@mui/icons-material/Inventory';
 
+import {Outlet,useNavigate} from 'react-router-dom';
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -95,7 +97,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function SideNav() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [menuData,setMenuData] = React.useState("Categories");
+  // const [menuData,setMenuData] = React.useState("Categories");
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -135,7 +138,7 @@ export default function SideNav() {
         </DrawerHeader>
         <Divider />
         <List>
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>setMenuData("Dashboard")}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>navigate("dashboard")}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -155,7 +158,7 @@ export default function SideNav() {
                 <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>setMenuData("Categories")}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>navigate("categories")}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -175,7 +178,7 @@ export default function SideNav() {
                 <ListItemText primary="Categories" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>setMenuData("Items")}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>navigate("items")}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -195,7 +198,7 @@ export default function SideNav() {
                 <ListItemText primary="Items" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>setMenuData("Users")}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>navigate("users")}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -221,10 +224,11 @@ export default function SideNav() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         {/* <DrawerHeader /> */}
-        {menuData === "Dashboard" && <Dashboard />}
+        {/* {menuData === "Dashboard" && <Dashboard />}
         {menuData === "Categories" && <Categories />}
         {menuData === "Items" && <Items />}
-        {menuData === "Users" && <Users />}
+        {menuData === "Users" && <Users />} */}
+        <Outlet />
       
        
       </Box>
