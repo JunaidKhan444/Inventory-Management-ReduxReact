@@ -15,32 +15,48 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { addCategory, removeCategory, updateItem } from '../state/categorySlice';
+import { v4 as uuidv4 } from 'uuid';
 
 const Categories = () => {
     const dispatch = useDispatch();
     const state = useSelector(state => state.category);
     const [view, setView] = React.useState("Categories");
-    const [name, setName] = React.useState("");
+    const [trry, setTrry] = React.useState("initial");
+    const [nameCategory, setName] = React.useState(
+        {
+            name: '',
+            uuid: '',
+        }
+    );
 
 
     React.useEffect(() => {
         dispatch(getUsers());
 
     }, []);
-
+ 
     const save = () => {
-        if (name.trim() == "") return;
-        view == 'Add' ?  dispatch(addCategory({ name })) : dispatch(updateItem(name));
+        // if (nameCategory.trim() == "") return;
+        if (view == 'Add') {
+            
+            // setName(prevNameCategory => ());
+            dispatch(addCategory({ ...nameCategory, uuid: uuidv4() }));
+        }
+        else {
+            dispatch(updateItem(nameCategory));
+        }
+        // view == 'Add' ? dispatch(addCategory({ nameCategory })) : dispatch(updateItem(nameCategory));
         setView("Categories");
-        setName("");
+        setName({});
     };
 
-    const editItem = (uuid) =>{
+    const editItem = (uuid) => {
         let data = state.categories.find(u => u.uuid === uuid)
-        console.log(data)
-        setName(data.name)
-        setView("Add")
-        
+        console.log(data, 'uid')
+        setName(data)
+        // setName(nameCategory.name)
+        setView("Edit")
+
     };
 
     const deleteCategory = (id) => {
@@ -49,7 +65,7 @@ const Categories = () => {
     }
 
     return (
-        <>
+        <> 
             <Box height={400}>
                 {view === 'Categories' && <>
                     <Grid container spacing={2}>
@@ -77,7 +93,7 @@ const Categories = () => {
                                                 </TableCell>
                                                 <TableCell align="right">{row.name}</TableCell>
                                                 <TableCell align="right">
-                                                    <Button variant="contained"on onClick={() => editItem(row.uuid)}>Edit</Button> &ensp;
+                                                    <Button variant="contained" onClick={() => editItem(row.uuid)}>Edit</Button> &ensp;
                                                     <Button variant="contained" onClick={() => deleteCategory(row.uuid)}>Delete</Button>
                                                 </TableCell>
                                             </TableRow>
@@ -85,11 +101,11 @@ const Categories = () => {
                                     </TableBody>
                                 </Table>
                             </TableContainer>
-                            {/* {state.categories.map(c => <div key={c.uuid}>{c.name}</div>)} */}
+                            {/* {state.categories.map(c => <div key={c.uuid}>{c.nameCategory}</div>)} */}
                         </Grid>
                     </Grid>
                 </>}
-                {view === 'Add' && <>
+                {(view === 'Add' || view === 'Edit') && <>
                     <Grid container spacing={2}>
                         <Grid item xs={10}>
                             <FormControl fullWidth sx={{ m: 1 }}>
@@ -97,8 +113,10 @@ const Categories = () => {
                                 <OutlinedInput
                                     id="outlined-adornment-amount"
                                     label="Category Name"
-                                    value={name}
-                                    onChange={e => setName(e.target.value)}
+                                    value={nameCategory.name}
+                                    // setName(prevNameCategory => ({...nameCategory,uuid:uuidv4()})
+                                    onChange={e => setName(prevNameCategory => ({ ...nameCategory, name: e.target.value }))}
+                                // setName(e.target.value)
                                 />
                             </FormControl>
                         </Grid>

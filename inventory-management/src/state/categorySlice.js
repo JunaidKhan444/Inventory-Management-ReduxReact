@@ -13,9 +13,9 @@ const categorySlice = createSlice({
     initialState,
     reducers: {
 
-        addCategory: (state, { payload }) => {
-            payload.uuid = uuidv4();
-            state.categories.push(payload);
+        addCategory: (state, action ) => {
+            // payload.uuid = uuidv4();
+            state.categories.push(action.payload);
         },
 
         removeCategory: (state, action) => {
@@ -23,8 +23,10 @@ const categorySlice = createSlice({
         },
 
         updateItem: (state, action) => {
-            let index = state.categories.findIndex(u => u.uuid == action.payload.uuid);
+            let index = state.categories.findIndex(u => u.uuid === action.payload.uuid);
             state.categories[index] = action.payload;
+            // let index = state.categories.findIndex(u.name == action.payload);
+            // console.log('hello',index)
         },
     },
 });
