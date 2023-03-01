@@ -71,7 +71,7 @@ const Items = () => {
                     <>
                         <Grid container spacing={2}>
                             <Grid item xs={8}>
-                                <Button variant="contained" onClick={() => setView('Add')}>Add</Button>
+                                <Button variant="contained" onClick={() => setView('Add')}>Add New Item</Button>
                             </Grid>
                             <Grid item sx={{ m: 1 }}>
                                 <TableContainer component={Paper}>

@@ -34,11 +34,11 @@ const Categories = () => {
         dispatch(getUsers());
 
     }, []);
- 
+
     const save = () => {
         // if (nameCategory.trim() == "") return;
         if (view == 'Add') {
-            
+
             // setName(prevNameCategory => ());
             dispatch(addCategory({ ...nameCategory, uuid: uuidv4() }));
         }
@@ -65,12 +65,12 @@ const Categories = () => {
     }
 
     return (
-        <> 
+        <>
             <Box height={400}>
                 {view === 'Categories' && <>
                     <Grid container spacing={2}>
                         <Grid item xs={8}>
-                            <Button variant="contained" onClick={() => setView('Add')}>Add</Button>
+                            <Button variant="contained" onClick={() => setView('Add')}>Add New Category</Button>
                         </Grid>
                         <Grid item sx={{ m: 1 }}>
                             <TableContainer component={Paper}>

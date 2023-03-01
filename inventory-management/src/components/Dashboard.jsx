@@ -37,7 +37,7 @@ export default function Dashboard() {
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
                 <Grid item xs={4}>
-                    <Card sx={{ minWidth: 275 }}>
+                    <Card sx={{ minWidth: 275, backgroundColor: "#EA8FEA" }}>
                         <CardContent>
                             <Typography variant="h1" component="div">
                                 {userCategory.categories.length}
@@ -54,7 +54,7 @@ export default function Dashboard() {
                 </Grid>
                 <Grid item xs={4}>
 
-                    <Card sx={{ minWidth: 275 }}>
+                    <Card sx={{ minWidth: 275, backgroundColor: "#FFAACF"}}>
                         <CardContent>
                             <Typography variant="h1" component="div">
                                 {itemState.items.length}
@@ -70,7 +70,7 @@ export default function Dashboard() {
                 </Grid>
                 <Grid item xs={4}>
 
-                    <Card sx={{ minWidth: 275 }}>
+                    <Card sx={{ minWidth: 275, backgroundColor: "#B9F3E4" }}>
                         <CardContent>
                             <Typography variant="h1" component="div">
                                 {userState.users.length}
