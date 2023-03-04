@@ -71,51 +71,48 @@ const Items = () => {
     return (
 
         <div>
-            <Box sx={{ flexGrow: 1 }}>
+            <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", width: "100%", gap: "10px" }}>
                 {view == 'Items' &&
                     <>
-                        <Grid container spacing={2}>
-                            <Grid item xs={8}>
-                                <Button variant="contained" onClick={() => setView('Add')}>Add New Item</Button>
-                            </Grid>
-                            <Grid item sx={{ m: 1 }}>
-                                <TableContainer component={Paper}>
-                                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>Id</TableCell>
-                                                <TableCell align="right">Name</TableCell>
-                                                <TableCell align="right">Quantity</TableCell>
-                                                <TableCell align="right">Category</TableCell>
-                                                <TableCell align="right">User</TableCell>
-                                                <TableCell align="right">Actions</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {state.items.map((row, id) => (
-                                                <TableRow
-                                                    key={id}
-                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                >
-                                                    <TableCell component="th" scope="row">
-                                                        {row.uuid}
-                                                    </TableCell>
-                                                    <TableCell align="right">{row.name}</TableCell>
-                                                    <TableCell align="right">{row.quantity}</TableCell>
-                                                    <TableCell align="right">{findCategory(row.categoryUuid)}</TableCell>
-                                                    <TableCell align="right">{findUser(row.userId)}
-                                                    </TableCell>
-                                                    <TableCell align="right">
-                                                        <Button variant="contained" onClick={() => editItem(row.uuid)}>Edit</Button> &ensp;
-                                                        <Button variant="contained" onClick={() => deleteItem(row.uuid)}>Delete</Button>
-                                                    </TableCell>
-                                                </TableRow>
-                                            ))}
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-                            </Grid>
-                        </Grid>
+                        <div>
+                            <Button variant="contained" onClick={() => setView('Add')}>Add New Item</Button>
+                        </div>
+                        <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Id</TableCell>
+                                        <TableCell align="right">Name</TableCell>
+                                        <TableCell align="right">Quantity</TableCell>
+                                        <TableCell align="right">Category</TableCell>
+                                        <TableCell align="right">User</TableCell>
+                                        <TableCell align="right">Actions</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {state.items.map((row, id) => (
+                                        <TableRow
+                                            key={id}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            <TableCell component="th" scope="row">
+                                                {row.uuid}
+                                            </TableCell>
+                                            <TableCell align="right">{row.name}</TableCell>
+                                            <TableCell align="right">{row.quantity}</TableCell>
+                                            <TableCell align="right">{findCategory(row.categoryUuid)}</TableCell>
+                                            <TableCell align="right">{findUser(row.userId)}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                <Button variant="contained" onClick={() => editItem(row.uuid)}>Edit</Button> &ensp;
+                                                <Button variant="contained" onClick={() => deleteItem(row.uuid)}>Delete</Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+
                     </>
                 }
 
