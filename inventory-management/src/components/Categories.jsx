@@ -30,10 +30,10 @@ const Categories = () => {
     );
 
 
-    React.useEffect(() => {
-        dispatch(getUsers());
+    // React.useEffect(() => {
+    //     dispatch(getUsers());
 
-    }, []);
+    // }, []);
 
     const save = () => {
         // if (nameCategory.trim() == "") return;

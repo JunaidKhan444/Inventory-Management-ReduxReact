@@ -7,8 +7,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
+
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { getUsers } from '../api/userApi';
 
 
 
@@ -18,12 +20,45 @@ import { useDispatch } from 'react-redux';
 
 export default function Users() {
     const dispatch = useDispatch();
-    const userData = useSelector(state => state.user)
+    const userData = useSelector(state => state.user);
+
+    // const [rows, setRows] = React.useState(userData.users);
+    const [searched, setSearched] = React.useState("");
+
+    // const requestSearch = (searchedVal) => {
+    //     setSearched(searchedVal)
+    //     const filteredRows = userData.users.filter((row) => {
+    //         console.log(searchedVal)
+    //         return row.name.toLowerCase().includes(searchedVal.toLowerCase());
+    //     });
+    //     console.log(filteredRows);
+    //     setRows(filteredRows);
+    // };
+
+    const cancelSearch = () => {
+        setSearched("");
+        requestSearch(searched);
+    };
+
+    React.useEffect(() => {
+        dispatch(getUsers());
+    }, []);
 
     return (
         <>
             <Box height={400}>
                 <TableContainer component={Paper}>
+                    <input
+                        type="text"
+                        value={searched}
+                        // onChange={(e) => requestSearch(e.target.value)}
+                        onChange={(e) => setSearched(e.target.value)}
+
+                    ></input>
+
+
+
+
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
@@ -31,10 +66,11 @@ export default function Users() {
                                 <TableCell align="right">Name</TableCell>
                                 <TableCell align="right">Email</TableCell>
                                 <TableCell align="right">Phone</TableCell>
+                                <TableCell align="right">City</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {userData.users.map((row) => (
+                            {userData.users.filter(u => u.name.toLowerCase().includes(searched.toLowerCase())).map((row) => (
                                 <TableRow
                                     key={row.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -45,6 +81,7 @@ export default function Users() {
                                     <TableCell align="right">{row.name}</TableCell>
                                     <TableCell align="right">{row.email}</TableCell>
                                     <TableCell align="right">{row.phone}</TableCell>
+                                    <TableCell align="right">{row.address.city}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

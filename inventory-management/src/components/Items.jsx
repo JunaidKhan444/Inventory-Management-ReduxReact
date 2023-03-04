@@ -17,6 +17,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem, removeItem, updateItem } from '../state/itemSlice';
+import { getUsers } from '../api/userApi';
 
 
 const Items = () => {
@@ -25,6 +26,10 @@ const Items = () => {
     const stateUser = useSelector(state => state.user);
     const state = useSelector(state => state.item);
     const [view, setView] = React.useState("Items");
+
+    React.useEffect(() => {
+        dispatch(getUsers());
+    }, []);
 
     const [item, setItem] = React.useState(
         {
@@ -47,7 +52,7 @@ const Items = () => {
         return user ? user.name : ""
 
     };
-    
+
     const findCategory = (id) => {
         let category = stateCategory.categories.find(u => u.uuid === id)
         return category ? category.name : ""
