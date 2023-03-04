@@ -71,7 +71,7 @@ const Items = () => {
     return (
 
         <div>
-            <Box height={400}>
+            <Box sx={{ flexGrow: 1 }}>
                 {view == 'Items' &&
                     <>
                         <Grid container spacing={2}>

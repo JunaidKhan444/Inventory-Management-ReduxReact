@@ -34,57 +34,57 @@ export default function Dashboard() {
     const userCategory = useSelector(state => state.category);
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={4}>
-                    <Card sx={{ minWidth: 275, backgroundColor: "#EA8FEA" }}>
-                        <CardContent>
-                            <Typography variant="h1" component="div">
-                                {userCategory.categories.length}
-                            </Typography>
-                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                Categories
-                            </Typography>
-                            <Typography variant="body2">
-                                Number of Categories
-                            </Typography>
-                        </CardContent>
-                    </Card>
+        <Box sx={{ display: "flex", flexWrap: "wrap", width: "90vw", justifyContent: "space-evenly" }}>
+            {/* <Grid container spacing={2}>
+                <Grid item xs={4}> */}
+            <Card sx={{ minWidth: 275, backgroundColor: "#EA8FEA" }}>
+                <CardContent>
+                    <Typography variant="h1" component="div">
+                        {userCategory.categories.length}
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        Categories
+                    </Typography>
+                    <Typography variant="body2">
+                        Number of Categories
+                    </Typography>
+                </CardContent>
+            </Card>
 
-                </Grid>
-                <Grid item xs={4}>
+            {/* </Grid>
+                <Grid item xs={4}> */}
 
-                    <Card sx={{ minWidth: 275, backgroundColor: "#FFAACF"}}>
-                        <CardContent>
-                            <Typography variant="h1" component="div">
-                                {itemState.items.length}
-                            </Typography>
-                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                Items
-                            </Typography>
-                            <Typography variant="body2">
-                                Number of Items
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </Grid>
-                <Grid item xs={4}>
+            <Card sx={{ minWidth: 275, backgroundColor: "#FFAACF" }}>
+                <CardContent>
+                    <Typography variant="h1" component="div">
+                        {itemState.items.length}
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        Items
+                    </Typography>
+                    <Typography variant="body2">
+                        Number of Items
+                    </Typography>
+                </CardContent>
+            </Card>
+            {/* </Grid>
+                <Grid item xs={4}> */}
 
-                    <Card sx={{ minWidth: 275, backgroundColor: "#B9F3E4" }}>
-                        <CardContent>
-                            <Typography variant="h1" component="div">
-                                {userState.users.length}
-                            </Typography>
-                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                Users
-                            </Typography>
-                            <Typography variant="body2">
-                                Number of Users
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </Grid>
-            </Grid>
+            <Card sx={{ minWidth: 275, backgroundColor: "#B9F3E4" }}>
+                <CardContent>
+                    <Typography variant="h1" component="div">
+                        {userState.users.length}
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        Users
+                    </Typography>
+                    <Typography variant="body2">
+                        Number of Users
+                    </Typography>
+                </CardContent>
+            </Card>
+            {/* </Grid>
+            </Grid> */}
         </Box>
     );
 }

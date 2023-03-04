@@ -66,67 +66,73 @@ const Categories = () => {
 
     return (
         <>
-            <Box height={400}>
+            <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", width: "100%", gap: "10px" }}>
                 {view === 'Categories' && <>
-                    <Grid container spacing={2}>
-                        <Grid item xs={8}>
-                            <Button variant="contained" onClick={() => setView('Add')}>Add New Category</Button>
-                        </Grid>
-                        <Grid item sx={{ m: 1 }}>
-                            <TableContainer component={Paper}>
-                                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Id</TableCell>
-                                            <TableCell align="right">Name</TableCell>
-                                            <TableCell align="right">Actions</TableCell>
+
+                    <div>
+
+                        <Button variant="contained" onClick={() => setView('Add')}>Add New Category</Button>
+
+                    </div>
+                    <div>
+
+                        <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Id</TableCell>
+                                        <TableCell align="right">Name</TableCell>
+                                        <TableCell align="right">Actions</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {state.categories.map((row, i) => (
+                                        <TableRow
+                                            key={row.uuid}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            <TableCell component="th" scope="row">
+                                                {row.uuid}
+                                            </TableCell>
+                                            <TableCell align="right">{row.name}</TableCell>
+                                            <TableCell align="right">
+                                                <Button variant="contained" onClick={() => editItem(row.uuid)}>Edit</Button> &ensp;
+                                                <Button variant="contained" onClick={() => deleteCategory(row.uuid)}>Delete</Button>
+                                            </TableCell>
                                         </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {state.categories.map((row, i) => (
-                                            <TableRow
-                                                key={row.uuid}
-                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                            >
-                                                <TableCell component="th" scope="row">
-                                                    {row.uuid}
-                                                </TableCell>
-                                                <TableCell align="right">{row.name}</TableCell>
-                                                <TableCell align="right">
-                                                    <Button variant="contained" onClick={() => editItem(row.uuid)}>Edit</Button> &ensp;
-                                                    <Button variant="contained" onClick={() => deleteCategory(row.uuid)}>Delete</Button>
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                            {/* {state.categories.map(c => <div key={c.uuid}>{c.nameCategory}</div>)} */}
-                        </Grid>
-                    </Grid>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                        {/* {state.categories.map(c => <div key={c.uuid}>{c.nameCategory}</div>)} */}
+
+                    </div>
+
                 </>}
                 {(view === 'Add' || view === 'Edit') && <>
-                    <Grid container spacing={2}>
-                        <Grid item xs={10}>
-                            <FormControl fullWidth sx={{ m: 1 }}>
-                                <InputLabel htmlFor="outlined-adornment-amount">Category Name</InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-amount"
-                                    label="Category Name"
-                                    value={nameCategory.name}
-                                    // setName(prevNameCategory => ({...nameCategory,uuid:uuidv4()})
-                                    onChange={e => setName(prevNameCategory => ({ ...nameCategory, name: e.target.value }))}
-                                // setName(e.target.value)
-                                />
-                            </FormControl>
-                        </Grid>
-                        <Grid item xs={5}>
+
+                    <div >
+                        <FormControl fullWidth sx={{ width: "100%" }}>
+                            <InputLabel htmlFor="outlined-adornment-amount">Category Name</InputLabel>
+                            <OutlinedInput
+                                id="outlined-adornment-amount"
+                                label="Category Name"
+                                value={nameCategory.name}
+                                // setName(prevNameCategory => ({...nameCategory,uuid:uuidv4()})
+                                onChange={e => setName(prevNameCategory => ({ ...nameCategory, name: e.target.value }))}
+                            // setName(e.target.value)
+                            />
+                        </FormControl>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <div>
                             <Button variant="contained" onClick={() => setView('Categories')}>Cancel</Button>
-                        </Grid>
-                        <Grid item xs={5}>
+                        </div>
+                        <div>
                             <Button variant="contained" onClick={save}>Save</Button>
-                        </Grid>
-                    </Grid>
+                        </div>
+                    </div>
+
                 </>
                 }
             </Box>

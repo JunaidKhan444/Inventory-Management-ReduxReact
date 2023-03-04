@@ -46,48 +46,51 @@ export default function Users() {
 
     return (
         <>
-            <Box height={400}>
-                <TableContainer component={Paper}>
-                    <input
-                        type="text"
-                        value={searched}
-                        // onChange={(e) => requestSearch(e.target.value)}
-                        onChange={(e) => setSearched(e.target.value)}
+            <div style={{ margin: 20 }}>
+                <Box style={{ display: "Flex", flexDirection: "column" }}>
+                    <div style={{ display: "Flex", justifyContent: "flex-end" }}>
+                        <input
+                            placeholder='Search'
+                            type="text"
+                            value={searched}
+                            // onChange={(e) => requestSearch(e.target.value)}
+                            onChange={(e) => setSearched(e.target.value)}
 
-                    ></input>
-
-
-
-
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Id</TableCell>
-                                <TableCell align="right">Name</TableCell>
-                                <TableCell align="right">Email</TableCell>
-                                <TableCell align="right">Phone</TableCell>
-                                <TableCell align="right">City</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {userData.users.filter(u => u.name.toLowerCase().includes(searched.toLowerCase())).map((row) => (
-                                <TableRow
-                                    key={row.id}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell component="th" scope="row">
-                                        {row.id}
-                                    </TableCell>
-                                    <TableCell align="right">{row.name}</TableCell>
-                                    <TableCell align="right">{row.email}</TableCell>
-                                    <TableCell align="right">{row.phone}</TableCell>
-                                    <TableCell align="right">{row.address.city}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Box>
+                        ></input>
+                    </div>
+                    <div>
+                        <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Id</TableCell>
+                                        <TableCell align="right">Name</TableCell>
+                                        <TableCell align="right">Email</TableCell>
+                                        <TableCell align="right">Phone</TableCell>
+                                        <TableCell align="right">City</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {userData.users.filter(u => u.name.toLowerCase().includes(searched.toLowerCase())).map((row) => (
+                                        <TableRow
+                                            key={row.id}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            <TableCell component="th" scope="row">
+                                                {row.id}
+                                            </TableCell>
+                                            <TableCell align="right">{row.name}</TableCell>
+                                            <TableCell align="right">{row.email}</TableCell>
+                                            <TableCell align="right">{row.phone}</TableCell>
+                                            <TableCell align="right">{row.address.city}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </div>
+                </Box>
+            </div>
         </>
     );
 }
