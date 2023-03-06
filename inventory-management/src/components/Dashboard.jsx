@@ -34,7 +34,7 @@ export default function Dashboard() {
     const userCategory = useSelector(state => state.category);
 
     return (
-        <Box sx={{ display: "flex", flexWrap: "wrap", width: "90vw", justifyContent: "space-evenly" }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", width: "70vw", justifyContent: "space-around", gap: "6px" }}>
             {/* <Grid container spacing={2}>
                 <Grid item xs={4}> */}
             <Card sx={{ minWidth: 275, backgroundColor: "#EA8FEA" }}>
